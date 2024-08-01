@@ -1,0 +1,58 @@
+# load library
+library(tidyverse)
+
+# create hand
+hand <- c("rock", "scissor", "paper")
+
+# hands sample
+hands_sample <- sample(hand, size = 1, replace = FALSE)
+games <- 1:5
+
+# result
+total_response <- 0
+total_pc <- 0
+
+# play game
+play_game <- function() {
+	games <- 0
+	while(games < 5) {
+		response <- readline("rock, scissor, paper ! : ")
+		pc <- print(hands_sample <- sample(hand, size = 1, replace = FALSE))
+		if((response == "rock") & (pc == "scissor")) {
+			total_response <- total_response + 1
+			print("You won...")
+		} else if((response == "rock") & (pc == "paper")) {
+			total_pc <- total_pc + 1
+			print("You lost !")
+		} else if((response == "scissor") & (pc == "rock")) {
+			total_pc <- total_pc + 1
+			print("You lost !")
+		} else if((response == "scissor") & (pc == "paper")) {
+			total_response <- total_response + 1
+			print("You won...")
+		} else if((response == "paper") & (pc == "rock")) {
+			total_response <- total_response + 1
+			print("You won...")
+		} else if((response == "paper") & (pc == "scissor")) {
+			total_pc <- total_pc + 1
+			print("You lost !")
+		} else {
+			total_pc <- total_pc + 0
+			total_response <- total_response + 0
+			print("Again !")
+		}
+		games = games + 1
+		if((games == 5) &&
+			((sum(total_response) > sum(total_pc)) ||
+			(sum(total_response) < sum(total_pc)))) {
+				print("----- End Game -----")
+				player_score <- print(paste("You got", sum(total_response)))
+				pc_score <- print(paste("Mine is", sum(total_pc)))
+			if(sum(total_response) > sum(total_pc)) {
+				print("Congratulations...You won TT.")
+			} else if(sum(total_response) < sum(total_pc)) {
+				print("You lost eiei XD")
+			}
+		}
+	}
+}
